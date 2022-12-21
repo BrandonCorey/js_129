@@ -34,6 +34,7 @@ obj.speak(); // example of dot notation
 - Encapsulation refers to the bundling of data and the operations that work on that data together in a single entity (i.e an object)
   - Packaging related state and behavior together
   - **Note** In other languages, encapsulation also refers to the seperation of public and private data, but this is not supported in JS
+    - In these cases, an object exposes specific state and operations (referd to as the public interface) for other objects, while keeping other state and behavior inaccessible to other objects
 
 ```javascript
 // encapsulating data and operations for this student into a single object
