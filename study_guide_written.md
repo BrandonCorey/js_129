@@ -114,6 +114,7 @@ In JS, objects can inherit properties and behavior from one another
 **[[Prototype]]**
 - Every object has a hidden `[[Prototype]]` property that points to its prototype object
 - The default prototype for all objects in JS is `Object.prototype`
+  - This means all objects in JS have access to the methods of this object, unless explicitly given a prototype of `null`.
 
 ```javascript
 let personProto = {
@@ -124,4 +125,20 @@ let personProto = {
 
 let person = Object.create(personProto);
 person.greet(); // "hello"
+```
+
+
+## Higher Order Functions ##
+Has one of the following characteristics
+- Takes a function as an argument
+- Returns a function
+
+**Benefits**
+- Lets programmer use powerful and flexible abstractions
+  - Typically this leads to more declarative code
+
+```javascript
+let arr = [1, 2, 3];
+
+arr.forEach(num => console.log(num)); // forEach is a higher order function as it takes the anonymous function as an argument
 ```
