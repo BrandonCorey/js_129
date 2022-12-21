@@ -142,3 +142,23 @@ let arr = [1, 2, 3];
 
 arr.forEach(num => console.log(num)); // forEach is a higher order function as it takes the anonymous function as an argument
 ```
+
+## The Global Object ##
+JavaScript creates a global object when it begins to run
+- It serves as the implicit execution context for function invocations
+- In node, this is the object `global`
+- In the browser, this is the object `window`
+  - Has built in propeties like `infinity` and `parseInt`
+  - Undeclared variables are added as properties to the global object
+
+```javascript
+newProp = 1;
+global.newProp; // 1
+
+function Test() {
+  this.anotherProp = 2;
+}
+
+Test();
+global.anotherProp; // 2;
+```
