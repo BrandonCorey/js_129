@@ -66,3 +66,27 @@ let student = {
 
 student.school.name; // 'Umass Amherst"
 ```
+
+## Object Factories ##
+- A function used to create objects
+
+**Advantages of Factory functions**
+- Can create many objects more quickly
+- Less code duplication
+- More dynamic (can modify certain properties of object while keeping rest the same)
+ 
+**Disadvantages**
+- Every object created has a copy of all the same methods (redundant)
+- It is impossible to determine if an object came from a factory
+  - `instanceOf` will not work since the instances of the factory do not inherit from it
+  - `constructor` will not work because the constructor of the returned object will be `Object`
+```javascript
+function createComputer(cpu, gpu) {
+  return {
+    cpu,
+    gpu,
+  }
+}
+
+let computer = createComputer('R7 5800X3D', 'RTX 3080');
+```
