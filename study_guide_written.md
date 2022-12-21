@@ -26,7 +26,7 @@ let obj = {
 
 ```
 ## Methods ##
-- Properties of an object that have *functions* as values
+Properties of an object that have *functions* as values
 - Methods can be referred to as an objects *behvarior*
 - Methods can be invoked using dot-notation
 
@@ -36,7 +36,7 @@ obj.speak(); // example of dot notation
 ```
 
 ## Encapsulation ##
-- Encapsulation refers to the bundling of data and the operations that work on that data together in a single entity (i.e an object)
+Encapsulation refers to the bundling of data and the operations that work on that data together in a single entity (i.e an object)
   - Packaging related state and behavior together
   - **Note** In other languages, encapsulation also refers to the seperation of public and private data, but this is not supported in JS
     - In these cases, an object exposes specific data and operations (referd to as the public interface) for other objects, while keeping other state and behavior inaccessible to other objects
@@ -58,7 +58,7 @@ let student = {
 ```
 
 ## Collaborator Objects ##
-- Collaborator Objects refer to objects referenced by object `properties`
+Collaborator Objects refer to objects referenced by an object's `properties`
 - These can be simple objects, or any other objects like arrays and dates
 
 ```javascript
@@ -79,7 +79,7 @@ student.school.name; // 'Umass Amherst"
 ```
 
 ## Object Factories ##
-- A function used to create objects of a specific type
+A function used to create objects
 
 **Advantages of Factory functions**
 - Can create many objects of a specific type more quickly
