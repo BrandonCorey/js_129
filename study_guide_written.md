@@ -6,7 +6,7 @@
     - These are called *methods*
   - State (data) and behavior (operations) are stored using `properties`
 
- ### Properties ###
+ **Properties**
 - Properties have key - value pairs
   - All keys are strings, the keys values can be any data type
 - Properties can be accessed using either dot or bracket notation
@@ -78,10 +78,10 @@ student.school.name; // 'Umass Amherst"
 ```
 
 ## Object Factories ##
-- A function used to create objects
+- A function used to create objects of a specific type
 
 **Advantages of Factory functions**
-- Can create many objects more quickly
+- Can create many objects of a specific type more quickly
 - Less code duplication
 - More dynamic (can modify certain properties of object while keeping rest the same)
  
@@ -99,4 +99,29 @@ function createComputer(cpu, gpu) {
 }
 
 let computer = createComputer('R7 5800X3D', 'RTX 3080');
+```
+
+## Prototypal Inhertience ## 
+In JS, objects can inherit properties and behavior from one another
+  - JavaScript uses **_prototypal inheritance_**
+  - The object that you inherit properies and methods form is called the **prototype**
+
+**Delegation**
+- An inheriting object does not recieve properties from prototype
+- Instead, it delegates (trusts and redirects) property and method access it its prototype
+  - Can use `hasOwnProperty` to check if an object has a proeprty or is inheriting it
+
+**[[Prototype]]**
+- Every object has a hidden `[[Prototype]]` property that points to its prototype object
+- The default prototype for all objects in JS is `Object.prototype`
+
+```javascript
+let personProto = {
+  greet() {
+    console.log('hello');
+  }
+}
+
+let person = Object.create(personProto);
+person.greet(); // "hello"
 ```
