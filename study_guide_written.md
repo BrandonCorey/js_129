@@ -166,6 +166,7 @@ global.anotherProp; // 2;
 ## Execution Context ##
 The environment in which a function executes
 - Also refered to as the value of `this`
+- Determined by how the function is called, not where it is lexically defined
 
 Two ways to set context when calling a function or method
 - Explicit (bind, apply, call)
