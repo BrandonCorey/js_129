@@ -303,7 +303,7 @@ student.study(); 'brandon is studying!'
 - Passing functions as arguments can strip them of context if they are invoked regularly within the function body
 - This issue is solved similarly to the nested functions issue
 
-```javassctipt
+```javasctipt
 let student = {
   name: 'brandon',
   grades: [87, 91, 93],
