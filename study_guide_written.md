@@ -242,3 +242,59 @@ let student = {
 let study = student.study;
 study(); // 'undefined is studying!' (looks for name property is global object)
 ```
+
+### Nested function not using surrounding context ###
+- When a nested function (typically inside of a method) is called normally and loses its surrounding context
+  - NOTE: This does not apply to arrow functions which retain their surrounding scope even when called regularly
+**Solutions**
+- Arrow functions --> preserve surrounding scope when called regularly
+- `call` --> pass context of object to function call
+- `apply` --> pass context of object to function call
+- `bind` --> use `bind` method on function (at enclosing curly brace) to store in variable, then call function with that variable
+- store object `this` in variable, use it to specify context
+```javascript
+let student = {
+  name: 'brandon',
+  study() {
+    function print() {console.log(`${this.name} is studying!`);}
+    
+    print();
+  }
+}
+
+student.study(); 'undefined is studying!'
+```
+```javascript
+let student = {
+  name: 'brandon',
+  study() {
+    function print() {console.log(`${this.name} is studying!`);}
+      
+    print.call(student);
+  }
+};
+
+student.study(); 'brandon is studying!'
+```
+```javascript
+let student = {
+  name: 'brandon',
+  study() {
+    let print = function() {console.log(`${this.name} is studying!`);}.bind(student);
+    print();
+  }
+};
+
+student.study(); 'brandon is studying!'
+```
+```javascript
+let student = {
+  name: 'brandon',
+  study() {
+    let that = this;
+    function print() {console.log(`${that.name} is studying!`);}
+    print();
+  }
+};
+student.study(); 'brandon is studying!'
+```
