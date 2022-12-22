@@ -163,3 +163,24 @@ function Test() {
 Test();
 global.anotherProp; // 2;
 ```
+## Execution Context ##
+The environment in which a function executes
+- Also refered to as the value of `this`
+
+Two ways to set context when calling a function or method
+- Explicit (bind, apply, call)
+  - Methods like `call` allow you to pass an explicit context to a function to have it executed with
+  - NOTE: call and apply call functions, bind returns a function bound to a context
+- Implicit (own method invocation, regular function call)
+  - Use of method invocation of an object's own method is called *method execution context*
+```javascript
+
+let obj = { name: 'joe', test: function() {console.log(this.name);} }
+obj.test(); // implicit, context is obj
+
+let test = obj.test;
+test(); // implicit, context is global (regular function call with parenthesis)
+
+let newObj = { name: 'brandon' }
+obj.test.call(newObj) // explicit, context is newObj
+```
