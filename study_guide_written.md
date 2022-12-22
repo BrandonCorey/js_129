@@ -185,3 +185,44 @@ test(); // implicit, context is global (regular function call with parenthesis)
 let newObj = { name: 'brandon' }
 obj.test.call(newObj) // explicit, context is newObj
 ```
+### call, apply, bind ###
+**call**
+- Calls a function with an explicit execution context passed in as the first argument
+  - Additional arguments for the function being called can be passed as subsequent arguments
+
+**apply**
+- Works similarly to call, but accepts an array of arguments after `this`
+
+**bind**
+- Returns a new function permnanently bound to an exeuction context
+- Context cannot be changed, even with `call` and `apply`
+  - Original function is not bound to anything explicity, `bind` always returns a new function!
+```javascript
+let vehicle = {
+  engineOn: false,
+  
+  start() {
+    this.engineOn = true;
+  },
+  
+  stop() {
+    this.engineOn = false;
+  }
+};
+
+let truck = {
+  year: 2009,
+  mpg: 15,
+  engineOn: false,
+};
+
+vehicle.start.call(truck);
+truck.engineOn; // true
+
+vehicle.stop.call(truck);
+truck.engineOn; // false
+
+let turnOnTruck = vehicle.start.bind(truck);
+turnOnTruck();
+truck.engineOn // true
+```
