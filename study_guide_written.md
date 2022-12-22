@@ -298,3 +298,34 @@ let student = {
 };
 student.study(); 'brandon is studying!'
 ```
+
+### Function as argument losing surrounding context ###
+- Passing functions as arguments can strip them of context if they are invoked regularly within the function body
+- This issue is solved similarly to the nested functions issue
+
+```javassctipt
+let student = {
+  name: 'brandon',
+  grades: [87, 91, 93],
+  
+  printGrades() {
+    this.grades.forEach(function(grade) {console.log(`${this.name}'s grade: ${grade}`)});
+  }
+}
+
+// unefined's grade: 87
+// unefined's grade: 91
+// unefined's grade: 93
+```
+```javascript
+let student = {
+  name: 'brandon',
+  grades: [87, 91, 93],
+  
+  printGrades() {
+    this.grades.forEach(function(grade) {
+    console.log(`${this.name}'s grade: ${grade}`)
+    }.bind(this));
+  }
+}
+```
