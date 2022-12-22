@@ -226,3 +226,19 @@ let turnOnTruck = vehicle.start.bind(truck);
 turnOnTruck();
 truck.engineOn // true
 ```
+## Context Loss ##
+
+### Method copied from Object ###
+- When the reference to an object method is stored in a variable and the variable is used to call the method
+  - This strips the exeuction context, makes `this` point to the global object
+```javascript
+let student = {
+  name: 'brandon',
+  study() {
+    console.log(`${this.name} is studying!`;
+  }
+}
+
+let study = student.study;
+study(); // 'undefined is studying!' (looks for name property is global object)
+```
