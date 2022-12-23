@@ -360,12 +360,14 @@ NOTE: Cannot use with arrow functions since they do not have `prototype` propert
 ## Constructors with prototypes (Psudeo-classical) ##
 - A creation pattern that does two things:
   - Uses constructors to act as object factories of a specific type
-  - Uses the `prototype` object of the constructor to share methods with instances of the constructor through inheritance
+  - Uses the `prototype` object of the constructor to share methods with instances of the constructor through inheritance 
     - We say that the instances delegate method calls to the prototype (if they don't have their own version of the method)
+ 
 **Benfefit**
 - The main benefit here is creating a method once and storing it in a single object
 - This removes code redudancy and reduces the strain on memory of duplicating methods
   - This is in direct contrast to how methods are shared using factory functions
+- The `new` keyword handles a number of processes automatically, such as creating a new object and setting its prototype 
 - Can check if an instance is of a particular type using:
   - `constructor` property
   - `instanceOf` keyword 
@@ -384,4 +386,36 @@ Student.prototype.averageGrade = function() { // Store methods in prototype obje
 
 let brandon = new Student('brandon', 12, [85, 89, 91]);
 brandon.averageGrade(); // 88.333
+```
+
+## Static and Instance Properties and Methods ##
+### Instance Properties ###
+Properties of an instance
+- These may be defined in the constructor (and added to the instance at invocation)
+- They may also be defined directly on the object
+```javascript
+brandon.year; // 12 (This is an instance property)
+Student.year; // undefined (This is not an instance property)
+```
+### Instance Methods ###
+Methods are also properties, but instance properties with method values are called *Instance Methods*
+- Instance methods also include, and typically refer to, **methods stored in the prototype object**
+  - This is because methods are not typically stored directly on instances (these are instance methods also however)
+```javascript
+brandon.averageGrade(); // This is an instance method (it is stored in [[Prototype]] of brandon);
+```
+## Static Properties ###
+Properties defined and accessed directly on the constructor
+- These belong to the type, rather than an instance of the type
+
+```javascript
+function Cat(name, breed, weight) {
+  this.name = name;
+  this.breed = breed;
+  this.weight = weight;
+}
+Cat.species = 'Felis Catus' // This is a static property
+Cat.description = function() {
+  console.log(`The species ${this.species} is also known as the house cat.`); // static method
+}
 ```
