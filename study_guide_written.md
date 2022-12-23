@@ -1,3 +1,12 @@
+## OOP ##
+A programming pattern that uses objects as the basic building blocks of a program instead of local variables and functins
+**Helps answer these questinos**
+- What are the important concepts in the program?
+- What are the properties of a vehicle?
+- How do we create vehicles?
+- What operations can I perform on a vehicle?
+- Where should we add new properties and methods?
+
 ## Objects ##
 One of the eight fundamental data types in JavaScript
 
@@ -172,7 +181,7 @@ Two ways to set context when calling a function or method
 - Explicit (bind, apply, call)
   - Methods like `call` allow you to pass an explicit context to a function to have it executed with
   - NOTE: call and apply call functions, bind returns a function bound to a context
-- Implicit (own method invocation, regular function call)
+- Implicit (method invocation, regular function call, new keyword)
   - Use of method invocation of an object's own method is called *method execution context*
 ```javascript
 
@@ -329,3 +338,30 @@ let student = {
   }
 }
 ```
+## Constructors ##
+A function that returns an object with some key distinctins
+- Called with `new` keyword
+- Use `this` to define object properties
+- Don't need explicit return value
+  - If an explicit return value is used:
+  - Primitve return values will be ignored, the `new` object will be returned anyway
+  - Objects will overwride the `new` object and be returned instead
+
+### `new` ###
+When used with a function
+- Creates new object
+- Sets prototype of new object to object referenced by constructors `prototype` property
+- Sets value of used in constructor body to point to the newly creaed object
+- Invokes the function
+- Returns the new object after the function invocation finihses
+NOTE: Cannot use with arrow functions since they do not have `prototype` property
+- Also cannot call on methods that use concise syntax
+
+## Constructors with prototypes (Psudeo-classical) ##
+- A creation pattern that does two things:
+  - Uses constructors to act as object factories of a specific type
+  - Uses the `prototype` object of the constructor to share methods with instances of the constructor through inheritance
+    - We say that the instances delegate method calls to the prototype (if they don't have their own version of the method)
+**Benfefit**
+- The main benefit here is not needing to recreate new methods every time an object is instantiated using the constructor function
+  - This is in direct contrast to how methods are shared using factory functions
