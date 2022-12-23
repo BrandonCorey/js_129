@@ -404,7 +404,7 @@ Methods are also properties, but instance properties with method values are call
 ```javascript
 brandon.averageGrade(); // This is an instance method (it is stored in [[Prototype]] of brandon);
 ```
-## Static Properties ###
+### Static Properties ###
 Properties defined and accessed directly on the constructor
 - These belong to the type, rather than an instance of the type
 
@@ -418,4 +418,30 @@ Cat.species = 'Felis Catus' // This is a static property
 Cat.description = function() {
   console.log(`The species ${this.species} is also known as the house cat.`); // static method
 }
+```
+### Static Methods ###
+Static properties that have functions as their values. These are defined simiarly to instance methods, but on the constructor again
+```javascript
+function Cat(name, breed, weight) {
+  this.name = name;
+  this.breed = brade;
+  this.weight = weight;
+}
+
+Cat.getSpecies = function() {
+  console.log('Felis Catus');
+}
+```
+## Built-in Constructors ##
+There are a number of built in constructors and prototpes in JavaScript, such as:
+
+### Arrays ###
+Array constructor is used with `new` keyword
+- Takes arguments of array elements
+- If only one argument provided, creates array with that number of empty elements
+- Array.prototype stores of all the methods that every array inherits
+- NOTE: Array is a constructor that can be used without `new` keyword and functions the same
+```javascript
+let arr = new Array(5).fill(null); // [null, null, null, null, null]
+console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
 ```
