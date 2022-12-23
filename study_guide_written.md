@@ -351,7 +351,7 @@ A function that returns an object with some key distinctins
 When used with a function
 - Creates new object
 - Sets prototype of new object to object referenced by constructors `prototype` property
-- Sets value of used in constructor body to point to the newly creaed object
+- Sets the execution context for the function body to point to the newly creaed object
 - Invokes the function
 - Returns the new object after the function invocation finihses
 NOTE: Cannot use with arrow functions since they do not have `prototype` property
@@ -363,5 +363,25 @@ NOTE: Cannot use with arrow functions since they do not have `prototype` propert
   - Uses the `prototype` object of the constructor to share methods with instances of the constructor through inheritance
     - We say that the instances delegate method calls to the prototype (if they don't have their own version of the method)
 **Benfefit**
-- The main benefit here is not needing to recreate new methods every time an object is instantiated using the constructor function
+- The main benefit here is creating a method once and storing it in a single object
+- This removes code redudancy and reduces the strain on memory of duplicating methods
   - This is in direct contrast to how methods are shared using factory functions
+- Can check if an instance is of a particular type using:
+  - `constructor` property
+  - `instanceOf` keyword 
+
+```javascript
+function Student(name, year, grades) {
+  this.name = name;
+  this.year = year;
+  this.grades = grades;
+}
+
+Student.prototype.averageGrade = function() { // Store methods in prototype object instead of on newly created object directly
+  let sum = this.grades.reduce((a, b) => a + b, 0);
+  return sum / this.grades.length;
+}
+
+let brandon = new Student('brandon', 12, [85, 89, 91]);
+brandon.averageGrade(); // 88.333
+```
