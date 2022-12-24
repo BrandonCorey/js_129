@@ -67,7 +67,7 @@ let student = {
 ```
 
 ## Collaborator Objects ##
-Collaborator Objects refer to objects referenced by an object's `properties`
+Collaborator Objects refer to objects referenced by a property of an object
 - These can be simple objects, or any other objects like arrays and dates
 
 ```javascript
