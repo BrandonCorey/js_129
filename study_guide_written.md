@@ -499,3 +499,17 @@ let num = 5;
 let strNum = String(num); // '5'
 typeof strNum // string
 ```
+
+### Boolean and Numbner ###
+Similar to String, when called with `new`, they create `Number` and `Boolean` objects
+- Without `new`, they coerce their argument to either a Number or a boolean
+- They have primitive and object forms, with JS wrapping the primitives in objects temporarily to access methdods and properties of the constructors and their prototype objects
+```javascript
+let five = new Number(5);
+five === 5; // false (five is an object, 5 is a primitive)
+Number('5'); // 5 (coerces string to number)
+
+let falseObj = new Boolean(false); // new booleam obkect
+falseObj === false; // false, falseObj is a boolean object, false is a primitive
+Boolean(0) === false; // true, 0 is coerced to false primitive
+```
