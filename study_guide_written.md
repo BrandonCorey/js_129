@@ -436,31 +436,51 @@ Cat.getSpecies = function() {
 There are a number of built in constructors and prototpes in JavaScript, such as:
 
 ### Array ###
-Array constructor is used with `new` keyword to create arrays
+`Array` constructor is used with `new` keyword to create arrays
 - Takes arguments of array elements
 - If only one argument provided, creates array with that number of empty elements
 - Array.prototype stores of all the methods that every array inherits
 - NOTE: Array is a constructor that can be used without `new` keyword and functions the same
 ```javascript
-let arr = new Array(5).fill(null); // [null, null, null, null, null]
+let arr = new Array(5).fill(null);
 console.log(Array.isArray(arr)); // true
 console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
 ```
 
 ### Object ###
-Object constructor is sued with `new` keyword to create objects
+`Object` constructor is used with `new` keyword to create objects
 - `new` is not required with Object either, but it is recommended
 - All objects created inherit from Object.prototype
 - There are lots of useful static methods for Object such as:
-- `Object.assign`
-- `Object.create`
-- `Object.keys`
-- `Object.values`
-  - Since other constructors like Array, Function, Date are also objeects, they also inherit from Object.prototype
+  - `Object.assign`
+  - `Object.create`
+  - `Object.keys`
+  - `Object.values`
+
+Since other constructors like Array, Function, Date are also objeects, they also inherit from Object.prototype
 ```javascript
 let obj = new Object();
 obj.a = 1;
 obj.hasOwnProperty('a'); // true
 let arr = new Array(1, 2, 3); // [1, 2, 3];
 arr.hasOwnProperty('1'); // true
+```
+
+### Date ###
+The `Date` constructor is used with the `new` keyword and cretes Date objects
+- When passed zero arguments, returns current date
+- Can pass the constructor a string that represents a date and the constructor will try to coerce it into a date 
+- All dates inherit from Date.prototype
+- Useful prototype methods like
+  - `Date.prototype.toString`
+  - `Date.prototype.getFullYear` --> returns full year as number i.e 2023
+  - `Date.prototype.getDay` --> returns day of week as number 0 - 6
+  - `Date.prototype.getMonth` --> returns month as Number 0 - 11
+  - `Date.prototype.getDate` --> returns day of month as number 0 - 31
+```javascript
+let birthday = new Date('11-01-1998');
+let dayOfWeek = birthday.getDay();
+let year = birthday.getFullYear();
+dayOfWeek; // 0
+year; // 1998
 ```
