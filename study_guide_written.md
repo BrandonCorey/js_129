@@ -435,13 +435,27 @@ Cat.getSpecies = function() {
 ## Built-in Constructors ##
 There are a number of built in constructors and prototpes in JavaScript, such as:
 
-### Arrays ###
-Array constructor is used with `new` keyword
+### Array ###
+Array constructor is used with `new` keyword to create arrays
 - Takes arguments of array elements
 - If only one argument provided, creates array with that number of empty elements
 - Array.prototype stores of all the methods that every array inherits
 - NOTE: Array is a constructor that can be used without `new` keyword and functions the same
 ```javascript
 let arr = new Array(5).fill(null); // [null, null, null, null, null]
+console.log(Array.isArray(arr)); // true
 console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
+```
+
+### Object ###
+Object constructor is sued with `new` keyword to create objects
+- `new` is not required with Object either, but it is recommended
+- All objects created inherit from Object.prototype
+  - Since other constructors like Array, Function, Date are also objeects, they also inherit from Object.prototype
+```javascript
+let obj = new Object();
+obj.a = 1;
+obj.hasOwnProperty('a'); // true
+let arr = new Array(1, 2, 3); // [1, 2, 3];
+arr.hasOwnProperty('1'); // true
 ```
