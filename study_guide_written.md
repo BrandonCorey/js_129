@@ -451,6 +451,11 @@ console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
 Object constructor is sued with `new` keyword to create objects
 - `new` is not required with Object either, but it is recommended
 - All objects created inherit from Object.prototype
+- There are lots of useful static methods for Object such as:
+- `Object.assign`
+- `Object.create`
+- `Object.keys`
+- `Object.values`
   - Since other constructors like Array, Function, Date are also objeects, they also inherit from Object.prototype
 ```javascript
 let obj = new Object();
