@@ -500,7 +500,7 @@ let strNum = String(num); // '5'
 typeof strNum // string
 ```
 
-### Boolean and Numbner ###
+### Boolean and Number ###
 Similar to String, when called with `new`, they create `Number` and `Boolean` objects
 - Without `new`, they coerce their argument to either a Number or a boolean
 - They have primitive and object forms, with JS wrapping the primitives in objects temporarily to access methdods and properties of the constructors and their prototype objects
@@ -515,3 +515,21 @@ Boolean(0) === false; // true, 0 is coerced to false primitive
 ```
 ## ES6 Classes ##
 Syntactic sugar for constuctor and prototype psuedo-classical pattern
+- Adds a `class` keyword
+- Designed to read easier and look similar to other OOP languages
+- Classes are really just constructor functions
+  - Have declarations and expressions like any other function
+  - Methods are stored inside of a `prototype` property of the class
+  - `typeof` a class is `function`
+  - are first-class citizens like normal functions
+ 
+**Differences from noraml Constructors**
+- The function prototype is not enumerable for es6 classes
+- The `new` keyword must be used when calling constructor with classes
+- Class syntax has a `constructor` method that is automatically called when `new` is used
+- Methods can be defined directly inside of class
+- Static proeprties can be defined directly inside of class
+- `extends` keyword allows you to set function `prototype` of class to inherit from another class
+- `super` keyword allows you to call super type function on objects instantiated with sub-class
+- Class declaratins are not hoisted
+- Prototype property of a class cannot be reassigned
