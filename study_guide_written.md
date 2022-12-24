@@ -484,3 +484,18 @@ let year = birthday.getFullYear();
 dayOfWeek; // 0
 year; // 1998
 ```
+### String ###
+Creates String objects
+- These are different from string primitives
+- String primitives are wrapped in String objects temporarily when a String.prototype method is called
+- The String.prototype method returns a new modified string based on the method used
+- String used without `new` will coerce a non string type to a string primitive
+```javascript
+let str = new String('hello'); // These are string objects
+let str1 = new String('hello');
+typeof str1; // object
+str === str1 // false
+let num = 5;
+let strNum = String(num); // '5'
+typeof strNum // string
+```
