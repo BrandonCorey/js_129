@@ -513,3 +513,5 @@ let falseObj = new Boolean(false); // new booleam obkect
 falseObj === false; // false, falseObj is a boolean object, false is a primitive
 Boolean(0) === false; // true, 0 is coerced to false primitive
 ```
+## ES6 Classes ##
+Syntactic sugar for constuctor and prototype psuedo-classical pattern
