@@ -538,7 +538,7 @@ Syntactic sugar for constuctor and prototype psuedo-classical pattern
 Uses prototypes and nvolves extracting properties common to all objects of the same type to a prototype object
 - Designed to embrace the prototypal nature of JS inheritance, instead of trying to hide it
 - `init` acts similarly to a constructor function (this can be named anything, but `init` is idiomatic)
-  - Unline constructur function, new object must be explicitly returned from as JS doesn't do it automatically
+  - Unlike constructor function, new object must be explicitly returned as JS doesn't do it automatically
 
 **Key advantage over factory functions**
 - Similar to the psuedo-classical approach, methods are stored in a prototpye object
