@@ -533,3 +533,32 @@ Syntactic sugar for constuctor and prototype psuedo-classical pattern
 - `super` keyword allows you to call super type function on objects instantiated with sub-class
 - Class declaratins are not hoisted
 - Prototype property of a class cannot be reassigned
+
+## OLOO ## 
+Uses prototypes and nvolves extracting properties common to all objects of the same type to a prototype object
+- Designed to embrace the prototypal nature of JS inheritance, instead of trying to hide it
+- `init` acts similarly to a constructor function (this can be named anything, but `init` is idiomatic)
+  - Unline constructur function, new object must be explicitly returned from as JS doesn't do it automatically
+
+**Key advantage over factory functions**
+- Similar to the psuedo-classical approach, methods are stored in a prototpye object
+- This means that methods are contained in a single placed and are not copied to every instantatiated object
+- This is more memory efficient than factory functions
+```javascript
+let studentPrototype = {
+  init(name, year, grades) {
+    this.name = name;
+    this.year = year;
+    this.grades = grades;
+    return this;
+  },
+  
+  averageGrade() {
+    let sum = this.grades.reduce((a, b) => a + b, 0);
+    return sum / this.grades.length;
+  }
+}
+
+let student = Object.create(studentPrototype).init('brandon', 12, [87, 90, 93]);
+student.averageGrade(); // 90
+```
