@@ -539,7 +539,7 @@ Uses prototypes and nvolves extracting properties common to all objects of the s
 - Designed to embrace the prototypal nature of JS inheritance, instead of trying to hide it
 - `init` acts similarly to a constructor function (this can be named anything, but `init` is idiomatic)
 - If we return `this` from init, it allows us to chain `init` with Object.create as we are returning reference to whatever variable we choose
-  - You don't have to return `this` if don't chain `init` and instead use it on the next line as the instance has already assigned to the variable
+  - You don't have to return `this` if don't chain `init` and instead use it on the next line as the instance reference has already been stored in a variable
 
 **Key advantage over factory functions**
 - Similar to the psuedo-classical approach, methods are stored in a prototpye object
