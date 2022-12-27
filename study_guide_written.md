@@ -592,7 +592,7 @@ studentPrototype.study = function () {
  let student = Object.create(studentPrototype);
  student.name = 'Brandon Corey';
  student.age = 23;
- student.year = 'Graduated';
+ student.degree = 'Economics';
  student.school = 'Umass Amherst';
 ```
 ```javascript
@@ -606,9 +606,9 @@ Person.prototype.greet = function() {
   console.log(`Hello, my name is ${this.name}`);
 }
 
-function Student(name, age, year, school) { // Sub type
+function Student(name, age, degree, school) { // Sub type
   Person.call(this, name, age);
-  this.year = year;
+  this.degree = degree;
   this.school = school;
 }
 
@@ -619,5 +619,36 @@ Student.prototype.study = function() {
   console.log('I am studying!');
 }
 
-let brandon = new Student('Brandon Corey', 23, 'Graduated', 'Umass Amherst');
+let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
+```
+
+## Subtyping with Classes ##
+- Uses psudo-classical inhertiance under the hood, but ES6 classes for more concise syntax
+- The `extends` keyword allows a sub type's prototype object to inherit from its super type's prototype object
+- The super type can be invoked within the constructor method of the sub type using the `super` keyword
+```javascript
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+class Student extends Person {
+  constructor(name, age, degree, school) {
+    super(name, age);
+    this.degree = degree;
+    this.school = school;
+  }
+  
+  study() {
+    console.log('I am studying!');
+  }
+}
+
+let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
 ```
