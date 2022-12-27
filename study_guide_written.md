@@ -623,6 +623,7 @@ let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
 ```
 
 ## Subtyping with Classes ##
+Creates sub typpes of a super type using ES6 class syntax
 - Uses psudo-classical inhertiance under the hood, but ES6 classes for more concise syntax
 - The `extends` keyword allows a sub type's prototype object to inherit from its super type's prototype object
 - The super type can be invoked within the constructor method of the sub type using the `super` keyword
