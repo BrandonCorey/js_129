@@ -564,18 +564,45 @@ let student = Object.create(studentPrototype).init('brandon', 12, [87, 90, 93]);
 student.averageGrade(); // 90
 ```
 ## Subtyping with Constructors and Prototypes ##
-Use of prototypal inheritence to create sub-types of a super type
+Use of psuedo-classical inheritence to create sub-types of a super type
 - This allows to borrow functionality from the super type while adding additional functionality to the sub type
 - The sub type extends the functionality of the super type
 
+
+### Psuedo-Classical Inheritance ###
+This inhertiance refers to one constructors prototype object inheriting from another constructors prototype object
+- This is what happens when using sub-typing
+- This is what is typically referred to when inheritance is talked about in the context of JS
+
 ```javascript
+// Prototypal
+let personPrototype = {
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+let studentPrototype = Object.create(personPrototype);
+
+studentPrototype.study = function () {
+  console.log('I am studying!');
+ }
+ 
+ let student = Object.create(studentPrototype);
+ student.name = 'Brandon Corey';
+ student.age = 23;
+ student.year = 'Graduated';
+ student.school = 'Umass Amherst';
+```
+```javascript
+// Psuedo-classical
 function Person(name, age) { // Super type
   this.name = name;
   this.age = age;
 }
 
 Person.prototype.greet = function() {
-  console.log(`Hello, my name is ${this.name})`;
+  console.log(`Hello, my name is ${this.name}`);
 }
 
 function Student(name, age, year, school) { // Sub type
