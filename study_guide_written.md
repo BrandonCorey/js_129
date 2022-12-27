@@ -653,3 +653,5 @@ class Student extends Person {
 
 let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
 ```
+
+## Mixins ##
