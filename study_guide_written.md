@@ -523,7 +523,7 @@ Syntactic sugar for constuctor and prototype psuedo-classical pattern
   - `typeof` a class is `function`
   - are first-class citizens like normal functions
  
-**Differences from noraml Constructors**
+**Differences from normal Constructors**
 - The function prototype is not enumerable for es6 classes
 - The `new` keyword must be used when calling constructor with classes
 - Class syntax has a `constructor` method that is automatically called when `new` is used
@@ -655,3 +655,65 @@ let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
 ```
 
 ## Mixins ##
+Mixins are a pattern that adds methods and properties from one object to another
+- It is not delegation, the properties are copied
+- This is used to solve the single inhertiance limitaiton of JavaScript
+- Does a good job modeling a "has a" relationship, while inheritance does a good job modeling an "is a" relationship
+  - Can be used a class may need to inherit methods from two different types
+  - Can be used when two unrelated types need to inherit from a single type
+### Single Inhertiance vs Multiple Inheritance ##
+**Single Inheritance**
+- Objects can only inherit from a single prototype object
+**Multiple Inheritance**
+- In other more classical OO languages, an object can inherit from multiple classes
+
+```javascript
+// First Example
+const runner = {
+  run() {}
+}
+
+const jumper = {
+  jump() {}
+}
+
+class Kangaroo {}
+
+class Elephant {}
+
+class Tiger {}
+
+Object.assign(Kangaroo.prototype, jumper);
+Object.assign(Elephant.prototype, runner);
+Object.assign(Tiger.prototype, runner, jumper);
+'run' in tiger // true
+'jump' in tiger // true
+
+// Second example
+const engine = {
+  start() {
+    this.engineOn = true;
+  },
+  
+  stop() {
+    this.engineOn = false;
+  },
+  
+  dianose() {
+    console.log('Diagnosing...');
+  },
+  
+  maintain() {
+    this.diagnose();
+    console.log('Maintaining');
+  }
+}
+
+class Car {}
+class Plane {}
+class Boat {}
+
+Object.assign(Car.prototype, engine);
+Object.assign(Plane.prototype, engine);
+Object.assign(Boat.prototype, engine);
+```
