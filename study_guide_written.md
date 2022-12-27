@@ -563,3 +563,33 @@ let studentPrototype = {
 let student = Object.create(studentPrototype).init('brandon', 12, [87, 90, 93]);
 student.averageGrade(); // 90
 ```
+## Subtyping with Constructors and Prototypes ##
+Use of prototypal inheritence to create sub-types of a super type
+- This allows to borrow functionality from the super type while adding additional functionality to the sub type
+- The sub type extends the functionality of the super type
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.greet = function() {
+  console.log(`Hello, my name is ${this.name})`;
+}
+
+function Student(name, age, year, school) {
+  Person.call(this, name, age);
+  this.year = year;
+  this.school = school;
+}
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+
+Student.prototype.study = function() {
+  console.log('I am studying!');
+}
+
+let brandon = new Student('Brandon Corey', 23, 'Graduated', 'Umass Amherst');
+```
