@@ -569,7 +569,7 @@ Use of prototypal inheritence to create sub-types of a super type
 - The sub type extends the functionality of the super type
 
 ```javascript
-function Person(name, age) {
+function Person(name, age) { // Super type
   this.name = name;
   this.age = age;
 }
@@ -578,13 +578,13 @@ Person.prototype.greet = function() {
   console.log(`Hello, my name is ${this.name})`;
 }
 
-function Student(name, age, year, school) {
+function Student(name, age, year, school) { // Sub type
   Person.call(this, name, age);
   this.year = year;
   this.school = school;
 }
 
-Student.prototype = Object.create(Person.prototype);
+Student.prototype = Object.create(Person.prototype); // Sub type inheriting through prototypal inheritance
 Student.prototype.constructor = Student;
 
 Student.prototype.study = function() {
