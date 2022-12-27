@@ -571,8 +571,9 @@ Use of psuedo-classical inheritence to create sub-types of a super type
 
 ### Psuedo-Classical Inheritance ###
 This inhertiance refers to one constructors prototype object inheriting from another constructors prototype object
-- This is what happens when using sub-typing
+- This pattern is used in the Psuedo-Classical creation pattern to conduct sub-tpying
 - This is what is typically referred to when inheritance is talked about in the context of JS
+  - At its core, this is also prototypal inheritance, albeit used in a way that abtracts some its prototypal nature
 
 ```javascript
 // Prototypal
