@@ -717,3 +717,38 @@ Object.assign(Car.prototype, engine);
 Object.assign(Plane.prototype, engine);
 Object.assign(Boat.prototype, engine);
 ```
+## Polymorhpism ##
+Refers to ability of objects with different types to respond in different ways to the same method invocation
+- When we don't care what type of object is calling the method, **that is polymorphism**
+  - This typically involves inheritance from a common super class, but inheritance is not required
+  - Overriding a method inherited from a super class is also considered polymorphism through inhertiance
+### Polymorphism through inheritance ###
+This covers two distinct but related behaviors
+- When subclasses extend the behavior of a method that is inherited from a super class
+- When subclasses override the methods of the super class to provide unique behavior for their specific type
+
+Both of these behaviors allow us to call the same method of different objects without worrying about their types and implementation
+ - Allows for more flexibility and code reuseablitiy as methods can be used on a variety of different objects
+```javascript
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+class Student extends Person{
+  constructor(name, age, school) {
+    super(name, age);
+    this.school = school;
+  }
+
+  greet() {
+    console.log(`Hello, my name is ${this.name} and I go to ${this.school}`);
+  }
+}
+```
