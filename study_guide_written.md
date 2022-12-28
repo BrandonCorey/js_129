@@ -357,7 +357,7 @@ When used with a function
 NOTE: Cannot use with arrow functions since they do not have `prototype` property
 - Also cannot call on methods that use concise syntax
 
-## Constructors with prototypes (Psudeo-classical) ##
+## Constructors and prototypes (Psudeo-classical) ##
 - A creation pattern that does two things:
   - Uses constructors to act as object factories of a specific type
   - Uses the `prototype` object of the constructor to share methods with instances of the constructor through inheritance 
