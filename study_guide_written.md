@@ -137,6 +137,39 @@ let person = Object.create(personProto);
 person.greet(); // "hello"
 ```
 
+## Method and Property Lookup sequence ##
+The JS engine look follow the internal [[Prototype]] property of an object to search for existance of object properties
+  - When the value `null` is reached, JS returns stops looking for the property
+    - If the property has a primitive value, `undefined` is returned
+    - If the property is a method, a typeError is thrown as the function does not exist
+```javascript
+function Dog(name, breed, color) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+}
+
+Dog.prototype.bark = function () {
+  console.log('Woof!!');
+}
+
+let dog = new Dog('spot', 'German Shepherd', 'Black');
+Object.getPrototypeOf(dog) === Dog.prototype; // true
+Object.getPrototypeOf(Dog) === Object.prototype; // true
+Object.getPrototpyeOf(Object.prototype === null) // true
+
+dog.name;
+// dog (found name)
+// 'spot'
+
+dog.bark();
+// dog --> Dog.prototype (found bark)
+// 'Woof!!'
+
+dog.age;
+// dog --> Dog.prototype --> Object.prototype --> null (not found)
+// undefined
+```
 
 ## Higher Order Functions ##
 Has one of the following characteristics
