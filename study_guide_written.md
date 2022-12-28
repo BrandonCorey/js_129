@@ -138,10 +138,9 @@ person.greet(); // "hello"
 ```
 
 ## Method and Property Lookup sequence ##
-The JS engine look follow the internal [[Prototype]] property of an object to search for existance of object properties
-  - When the value `null` is reached, JS returns stops looking for the property
-    - If the property has a primitive value, `undefined` is returned
-    - If the property is a method, a typeError is thrown as the function does not exist
+The JS engine will follow the internal [[Prototype]] property of an object to search for existance of object properties
+  - When the value `null` is reached, JS stops looking for the property and returns undefined
+    - NOTE: If a method that does not exist is invoked, a type error will be thrown
 ```javascript
 function Dog(name, breed, color) {
   this.name = name;
