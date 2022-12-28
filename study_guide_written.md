@@ -658,13 +658,15 @@ let student = new Student('Brandon Corey', 23, 'Economics', 'Umass Amherst');
 Mixins are a pattern that adds methods and properties from one object to another
 - It is not delegation, the properties are copied
 - This is used to solve the single inhertiance limitaiton of JavaScript
+  - Allows us to model relationships that are not possible through inheritance
 - Does a good job modeling a "has a" relationship, while inheritance does a good job modeling an "is a" relationship
   - Can be used a class may need to inherit methods from two different types
   - Can be used when two unrelated types need to inherit from a single type
 ### Single Inhertiance vs Multiple Inheritance ##
 **Single Inheritance**
 - Objects can only inherit from a single prototype object
-**Multiple Inheritance**
+
+### Multiple Inheritance ###
 - In other more classical OO languages, an object can inherit from multiple classes
 
 ```javascript
