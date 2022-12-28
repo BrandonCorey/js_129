@@ -722,6 +722,7 @@ Refers to ability of objects with different types to respond in different ways t
 - When we don't care what type of object is calling the method, **that is polymorphism**
   - This typically involves inheritance from a common super class, but inheritance is not required
   - Overriding a method inherited from a super class is also considered polymorphism through inhertiance
+
 ### Polymorphism through inheritance ###
 This covers two distinct but related behaviors
 - When subclasses extend the behavior of a method that is inherited from a super class
@@ -737,7 +738,7 @@ class Person {
   }
   
   greet() {
-    console.log(`Hello, my name is ${this.name}`);
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
   }
 }
 
@@ -748,7 +749,63 @@ class Student extends Person{
   }
 
   greet() {
-    console.log(`Hello, my name is ${this.name} and I go to ${this.school}`);
+    console.log(`Hello, my name is ${this.name} and I go to ${this.school}.`);
+  }
+}
+
+let person = new Person('Brandon Corey', 23);
+let student = new Student('Brandon Corey', 23, 'Umass Amherst');
+
+person.greet(); // Hello, my name is Brandon Corey and I am 23 years old.
+student.greet(); // Hello, my name is Brandon Corey and I go to Umass Amherst.
+```
+### Polymorphism through duck typing ###
+When objects of different **unrelated** types both respond to the same method name
+  - In this example, we don't care about inheritance from a common super type
+  - We only care if the two objects have the same method name with the same number of arguments
+```javascript
+class Programmer {
+  develop() {
+    this.programGame();
+  }
+  
+  programGame() {}
+}
+
+class Musician {
+  develop() {
+    this.createScore();
+  }
+  
+  createScore() {}
+}
+
+class Artist {
+  develop() {
+    this.designArt();
+  }
+  
+  designArt() {}
+}
+
+class VideoGame {
+  constructor() {
+    this.programmer = new Programmer();
+    this.musician = new Musician();
+    this.artist = new Artist();
+  }
+  
+  getDevs() {
+    return [
+      this.programmer,
+      this.musician,
+      this.artist,
+    ]
+  }
+  
+  develop() {
+    let devs = this.getDevs();
+    devs.forEach(dev => dev.develop());
   }
 }
 ```
