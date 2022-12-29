@@ -1,5 +1,6 @@
 ## OOP ##
 A programming pattern that uses objects as the basic building blocks of a program instead of local variables and functions
+
 **Helps answer these questions**
 - What are the important concepts in the program?
 - What are the properties of a vehicle?
