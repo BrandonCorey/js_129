@@ -18,7 +18,7 @@ An object is a data structure that can store state and behavior
   - State (data) and behavior (operations) are stored using `properties`
 
  **Properties**
-- Properties have key - value pairs
+- Properties are key - value pairs
   - All keys are strings, the keys values can be any data type
 - Properties can be accessed using either dot or bracket notation
   - NOTE: Methods cannot be invoked with bracket notation
