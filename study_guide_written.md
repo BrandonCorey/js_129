@@ -142,7 +142,10 @@ person.greet(); // "hello"
 ```
 
 ## Method and Property Lookup sequence ##
-The JS engine will follow the internal [[Prototype]] property of an object to search for existance of object properties
+The JS engine will search an object's prototype chain when looking for the existance of an object proeprty
+- The prototype chain consists of all instances of a constructor
+  - The object referenced by the internal [[Prototype]] property of each instance will lead further up the prototype chain until `null` is reached 
+    - (The the [[Prototype]] of Object.prototype is null)
   - When the value `null` is reached, JS stops looking for the property and returns undefined
     - NOTE: If a method that does not exist is invoked, a type error will be thrown
 ```javascript
