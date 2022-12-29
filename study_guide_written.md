@@ -23,7 +23,10 @@ An object is a data structure that can store state and behavior
 - Properties can be accessed using either dot or bracket notation
   - NOTE: Methods cannot be invoked with bracket notation
      - Dot notation: Also called member access notation
-- Bracket notation can use any string, dot notation requires valid variable names  
+- Bracket notation can use any string, dot notation requires valid variable names
+- To check if an object has a property
+   - `Object.prototype.hasOwnProperty` --> will tell you if an object has own version of a property
+   - `in` operator will tell you if an object has a property within its prototype chain
   
 ```javascript
 let obj = {
