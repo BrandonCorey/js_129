@@ -3,9 +3,9 @@ A programming pattern that uses objects as the basic building blocks of a progra
 
 **Helps answer these questions**
 - What are the important concepts in the program?
-- What are the properties of a vehicle?
-- How do we create vehicles?
-- What operations can I perform on a vehicle?
+- What are the properties of an object?
+- How do we create objects?
+- What operations can I perform on an object?
 - Where should we add new properties and methods?
 
 ## Objects ##
