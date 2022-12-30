@@ -47,3 +47,26 @@ function createCar(model, brand, year) {
   }
 }
 ```
+### Describe the above code snippet ###
+The function `createCar` is defined. The function returns an object with properties that have values equal to those of the arguments of the same names passed into the factory function. The returned object also has a `revEngine` method that logs 'Vrrrrmm'.
+
+## Constructors and Prototypes (Psuedo-classical) ##
+An object oriented creation pattern that uses constructor functions and inhertiance to create instances of a specific type
+- Constructor functions are used to initialized an object (act similar to object factories)
+- Psuedo-classical inheritance allows for delegation of property access to the super type of the instance
+- Constructors are called with the `new` keyword, which does a few things:
+  - Creates a new object
+  - Sets the prototype of the new object to the prototype object of the constructor
+  - Sets the context of the constructor function to the new object
+  - Executes the constructor function
+  - returns the new object
+```javascript
+function Student(name, degree) {
+  this.name = name;
+  this.degree = degree;
+}
+
+let student = new Student('Brandon Corey', 'Economics');
+```
+### Describe the above code snippet ###
+A constructor function named `Student` is defined. The constructor initalizes a new object when the `new` keyword is used to invoke the function. The arguments passed to the function have their values used to create instance properties of the same name on the newly initalized object using the `this` keyword, which points to the new object.
