@@ -53,7 +53,7 @@ The function `createCar` is defined. The function returns an object with propert
 
 ## Constructors and Prototypes (Psuedo-classical) ##
 An object oriented creation pattern that uses constructor functions and inhertiance to create instances of a specific type
-- Constructor functions are used to initialized an object (act similar to object factories)
+- Constructor functions are used to initialize an object (act similar to object factories)
 - Psuedo-classical inheritance allows for delegation of property access to the super type of the instance
 - Constructors are called with the `new` keyword, which does a few things:
   - Creates a new object
