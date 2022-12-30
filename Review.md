@@ -47,6 +47,7 @@ function createCar(model, brand, year) {
   }
 }
 ```
+
 ### Describe the above code snippet ###
 The function `createCar` is defined. The function returns an object with properties that have values equal to those of the arguments of the same names passed into the factory function. The returned object also has a `revEngine` method that logs 'Vrrrrmm'.
 
