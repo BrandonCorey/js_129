@@ -118,6 +118,7 @@ let computer = createComputer('R7 5800X3D', 'RTX 3080');
 ## Prototypal Inhertience ## 
 In JS, objects can inherit properties and behavior from one another
   - JavaScript uses **_prototypal inheritance_**
+  - Prototype objects allow inheriting objects to access their properties
   - The object that has its properties and methods inherited is called the **prototype**
 
 **Delegation**
