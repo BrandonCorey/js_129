@@ -70,4 +70,4 @@ function Student(name, degree) {
 let student = new Student('Brandon Corey', 'Economics');
 ```
 ### Describe the above code snippet ###
-A constructor function named `Student` is defined. The constructor initalizes a new object when the `new` keyword is used to invoke the function. The arguments passed to the function have their values used to create instance properties of the same name on the newly initalized object using the `this` keyword, which points to the new object.
+A constructor function named `Student` is defined. The constructor initalizes a new object when the `new` keyword is used to invoke the function. The arguments passed to the function have their values used to create instance properties of the same name on the newly initalized object using the `this` keyword, which points to the new object. The newly instantiated object then has its reference stored in the `student` variable.
