@@ -35,7 +35,7 @@ An object oriented design pattern used to create mutliple objects of a specific 
   - `constructor` property will not return anything useful as factories are just normal functions that do not modify the `constructor` property to point to themselves (will return Object)
   - `Object.getPrototypeOf` does not return anything useful as factories are just normal functions and do not modify the prototype of an instance to point to their `prototype` object
 ```javascript
-function createCar(model, brand, year) {
+function createCar(brand, model, year) {
   return {
     brand,
     model,
@@ -46,10 +46,12 @@ function createCar(model, brand, year) {
     }
   }
 }
+
+let car = createCar('Lincoln', 'Town Car', 2009);
 ```
 
 ### Describe the above code snippet ###
-The function `createCar` is defined. The function returns an object with properties that have values equal to those of the arguments of the same names passed into the factory function. The returned object also has a `revEngine` method that logs 'Vrrrrmm'.
+The function `createCar` is defined. The function returns an object with properties that have values equal to those of the arguments of the same names passed into the factory function. The returned object also has a `revEngine` method that logs 'Vrrrrmm'. The function is used to instantiate an object and store the reference in the `car` variable.
 
 ## Constructors and Prototypes (Psuedo-classical) ##
 An object oriented creation pattern that uses constructor functions and inhertiance to create instances of a specific type
