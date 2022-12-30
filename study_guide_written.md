@@ -1,3 +1,27 @@
+# JS 129 Study Guide: Part 1 #
+## Test taking tips ##
+General Guidance
+- What does the code output
+- Side Effects?
+- Return value? (Always a return value for functions/methods)
+- What concept does the code demonstrate?
+
+**Variable vocab:**
+- Variables are declared with let or const
+- Variables may be initalized with a value at declaration
+- After declaration, variables may be assigned or reassigned a value
+
+**Function vocab:**
+- Functions are declared with `function` keyword
+- Functions may be defined as an expression with a reference to the expression stored in a variable
+- Functions may *take* arguments
+- Functions may *have* parameters
+- Variables are not passed to or returned from functions, *values* or *references* are
+
+General Vocab
+- Any type of statement is "Defined"
+- Expressions *evaluate* to a value (value may be primitive or reference to an object)
+
 ## OOP ##
 A programming pattern that uses objects as the basic building blocks of a program instead of local variables and functions
 
