@@ -78,6 +78,7 @@ A constructor function named `Student` is defined. The constructor initalizes a 
 An object oriented creation pattern that uses prototypal inheritance to create object instances from prototype objects
 - Embraces JavaScripts prototypal inhertiance instead of tring to hide it like Psuedo-classical
 - Uses prototypal inheritance which allows for method delegation of instance properties to their prototypes
+  - Better for memory efficiency
 - Similar to other patterns, it can be used to bulk create objects of the same type
 ```javascript
 const inventoryPrototype = {
@@ -87,7 +88,9 @@ const inventoryPrototype = {
   
   addProduct(product, amount) {
     let stock = this;
-    stock[product] = (stock[product] || 0) + amount;
+    if (amount > 0) {
+      stock[product] = (stock[product] || 0) + amount;
+    }
   },
   
   removeProduct(product, amount) {
@@ -119,13 +122,18 @@ class Inventory {
   
   addProduct(product, amount) {
     let stock = this;
-    stock[product] = (stock[product] || 0) + amount;
+    
+    if (amount > 0) {
+      stock[product] = (stock[product] || 0) + amount;
+    }
   }
   
   removeProduct(product, amount) {
     let stock = this;
-    if (stock[product]) stock[product] -= amount;
+    if (stock[product] && amount > 0) stock[product] -= amount;
     if (stock[product] < 0) stock[product] = 0;
   }
 }
 ```
+### Explain the code above ###
+An `Inventory` type is defined using ES6 classes. It has three instance methods, `constructor` to initalize an empty inventory object, `addProduct` to add a `product` instance property to an the object, and `removeProduct` to remove an `amount` value from a `product `property. `addProduct` accepts a `product` and an `amount` argument and creates a property with those values if it does not already exist. It also requies that the `amount` is greater than 0. `removeProduct` subtracts an `amount` from an existing property if the value is greater than 0. Neither `addProduct` nor `removeProduct` return anything. 
