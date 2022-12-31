@@ -164,3 +164,34 @@ Student.info = function() { // <-- This is a static method
   console.log('These are students who have attended university');
 }
 ```
+## Prototypal and Psuedo-classical Inheritance ##
+Prototypal inheritance refers to objects delegating property access to other other objects referred to as there *prototypes*
+- Prototypal inheritance is the basis for all inhertiance in JavaScript
+- Every object has an internal [[Prototype]] property that points to its prototype 
+- Inherited properties are not copied to inheriting objects, they are accessed farther up the prototype chain within the object that contains them
+
+Psuedo-classical inheritance is a type of prototypal inhertiance where an object inherits properties from the prototype object of a constructor function
+- This behavior is observed in both Constructor/prototype creation patterns and ES6 classes
+- Can also refer to sub-typing, where one consturctors prototype object inherits from anothers prototype object
+```javascript
+// Prototypal
+let catPrototype = {
+  meow(){
+    console.log('Meoww');
+  }
+}
+
+let cat = Object.create(catPrototype);
+cat.meow(); // 'Meoww'
+```
+```javascript
+// Psuedo-classical
+function Cat() {}
+
+Cat.prototype.meow = function() {
+  console.log('Meoww');
+}
+
+let cat = new Cat();
+cat.meow(); // 'Meoww'
+```
