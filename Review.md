@@ -73,3 +73,59 @@ let student = new Student('Brandon Corey', 'Economics');
 ```
 ### Describe the above code snippet ###
 A constructor function named `Student` is defined. The constructor initalizes a new object when the `new` keyword is used to invoke the function. The arguments passed to the function have their values used to create instance properties of the same name on the newly initalized object using the `this` keyword, which points to the new object. The newly instantiated object then has its reference stored in the `student` variable.
+
+## OLOO ##
+An object oriented creation pattern that uses prototypal inheritance to create object instances from prototype objects
+- Embraces JavaScripts prototypal inhertiance instead of tring to hide it like Psuedo-classical
+- Uses prototypal inheritance which allows for method delegation of instance properties to their prototypes
+- Similar to other patterns, it can be used to bulk create objects of the same type
+```javascript
+const inventoryPrototype = {
+  init() {
+    return this;
+  },
+  
+  addProduct(product, amount) {
+    let stock = this;
+    stock[product] = (stock[product] || 0) + amount;
+  },
+  
+  removeProduct(product, amount) {
+    let stock = this;
+    if (stock[product]) stock[product] -= amount;
+    if (stock[product] < 0) stock[product] = 0;
+  }
+}
+
+let inventory = Object.create(inventoryPrototype).init();
+```
+### Describe the code above ###
+A variable `inventoryPrototype` is declared an initialized with an object containing three instance methods. This object follows the OLOO pattern, with an `init` method initalize an object. `addProduct` adds a `product` property to the object with an `amount` value, and `removeItem` removes a specified `amount` from an item. Neither add or remove product return anything. `Object.create` is then used to create an object that inherits from `inventoryPrototype`, and the `init` method is immediately chained to initalize the object.
+
+## ES6 Classes ##
+An object oriented creation pattern that uses psuedo-classical inheritance abstracted by "class" syntax more conistant with other OO languages
+- Uses prototypes and constructors under the hood
+- Classes are just functions
+- Instance methods are stored in the prototype object of the class
+- New objects are initalized with a `constructor` method inside of the class
+  - The `constructor` is automatically invoked when the `new` keyword is used with a class name
+  - The `new` keyword MUST be used when invoking a class constructor method
+  - The `super` keyword can be used within the constructor to invoke the constructor of the super type
+- Instance methods can be defined directly inside of the class
+- Class syntax uses the `extends` keyword to create sub-types that inherit from the super
+```javascript
+class Inventory {
+  constructor() {}
+  
+  addProduct(product, amount) {
+    let stock = this;
+    stock[product] = (stock[product] || 0) + amount;
+  }
+  
+  removeProduct(product, amount) {
+    let stock = this;
+    if (stock[product]) stock[product] -= amount;
+    if (stock[product] < 0) stock[product] = 0;
+  }
+}
+```
