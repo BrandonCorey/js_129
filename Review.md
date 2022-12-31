@@ -195,3 +195,7 @@ Cat.prototype.meow = function() {
 let cat = new Cat();
 cat.meow(); // 'Meoww'
 ```
+### Explain the two code snippets above ###
+In the first snippet, `catPrototype` is declared an initalized to an object with one `meow` method that logs 'Moeww' and returns `undefined`. It is then passed as an argument to `Object.create`, which initalizes an object with `catPrototype` as the prototype. The reference of this object is then stored inside the `cat` variable.
+
+In the second code snipped, a constructor funciton `Cat` is defined that takes no arguments and returns `undefined`. A `meow` method is then defined on prototype object of `Cat` to allow instances of the constructor to inherit the method, which logs 'Meoww' and returns `undefined`. `Cat` is then invoked with the `new` keyword to initialize a new object that inerhits from `Cat.prototype`, and stores the reference to this object in the variable `cat`. 
