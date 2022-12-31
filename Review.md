@@ -164,6 +164,9 @@ Student.info = function() { // <-- This is a static method
   console.log('These are students who have attended university');
 }
 ```
+### Describe the difference between instance methods and static methods ###
+Instance methods are methods that are defined either directly on an instance, or methods defined on an the prototype object of the constructor of an instance. This means that instance methods can be inherited from the constructor. Static methods on the other hand are defined directly _on_ the constructor, meaning that they pertain to type itself, and not the instances of the type. This also means that they are not inherited by instances of the type as they are not contained within the prototype of the instance.
+
 ## Prototypal and Psuedo-classical Inheritance ##
 Prototypal inheritance refers to objects delegating property access to other other objects referred to as there *prototypes*
 - Prototypal inheritance is the basis for all inhertiance in JavaScript
@@ -199,3 +202,28 @@ cat.meow(); // 'Meoww'
 In the first snippet, `catPrototype` is declared an initalized to an object with one `meow` method that logs 'Moeww' and returns `undefined`. It is then passed as an argument to `Object.create`, which initalizes an object with `catPrototype` as the prototype. The reference of this object is then stored inside the `cat` variable.
 
 In the second code snipped, a constructor funciton `Cat` is defined that takes no arguments and returns `undefined`. A `meow` method is then defined on prototype object of `Cat` to allow instances of the constructor to inherit the method, which logs 'Meoww' and returns `undefined`. `Cat` is then invoked with the `new` keyword to initialize a new object that inerhits from `Cat.prototype`, and stores the reference to this object in the variable `cat`. 
+
+This code demonstrates the different levels of abstraction between prototypal and psuedo-classical inhertiance. Prototypal inhertiance refers to the delegation of object properties to an object that appears in the object's prototype chain, where as psuedoclassical inhertiance refers to inhertiance from a prototype object of a constructor function. This is still prototypal inhertiance at its core, but refers to the use of it within the context of a specific creation pattern.
+
+## Encapsulation ## 
+Encapsulation refers to the idea of bundling data and operations that use that data into a single entity (object)
+- One of the three pillars of OOP
+- Allows for easier scalabiliy as objects are useful for organizing state and behavior as programs grow in size
+- Also refers to the idea of seperation of public and private interface, however this is natively supported in JS
+  - Public interface refers to properties of an object that are allowed to be accessed directly
+  - Private interface refers to properties of an object that are not directly accessible outside of the object
+ ```javascript
+let pc = {
+  cpu: 'R7 5800X3D',
+  gpu: 'RTX 3080',
+  mobo: 'B550',
+  
+ info() {
+   console.log(
+     `Contains a ${this.cpu} and ${this.gpu} on a ${this.mobo}`
+   )
+ }
+}
+ ```
+ ### Explain the snippet above ###
+ An `pc` variable is declared and initalized with an object containing four properties, one of which is a method. The properties contain info on the CPU, GPU, and motherboard of the pc. The info method prints this informatin, using a template literal to interpolate the names of the respective properties. This demonstrates encapsulation as all of the properties pertain to pc components, and the `info` method is simply prints a descrition of the components of the pc, which is relevant to the state of the object.
