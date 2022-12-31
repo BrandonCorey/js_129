@@ -137,3 +137,30 @@ class Inventory {
 ```
 ### Explain the code above ###
 An `Inventory` type is defined using ES6 classes. It has three instance methods, `constructor` to initalize an empty inventory object, `addProduct` to add a `product` instance property to an the object, and `removeProduct` to remove an `amount` value from a `product `property. `addProduct` accepts a `product` and an `amount` argument and creates a property with those values if it does not already exist. It also requies that the `amount` is greater than 0. `removeProduct` subtracts an `amount` from an existing property if the value is greater than 0. Neither `addProduct` nor `removeProduct` return anything. 
+
+## Methods and Properties ##
+_Properties_ are key value pairs stored within an object. Properties can be accessed using name of the "key"
+- Instance properties are properties of an object instance or properties inherited through the prototype chain of the instance
+- Static properties are properties defined directly on the constructor of an instance
+  - These are not inherited
+
+_Methods_ are properties of an object whose associated value is a function
+- Instance methods refer to methods of an instance, or more commonly methods that appear in the prototype chain (usually prototype object) of an instance
+- Static methods are methods defined directly on the constructor of an instance
+  - These are not inherited
+```javascript
+function Student(name, degree, grades) {
+  this.name = name;
+  this.degree = degree;
+  this.grades = grades; // <-- These are instance properties
+}
+
+Student.prototype.averageGrade = function() { // <-- This is an instance method
+  let sum = this.grades.reduce((a, b) => a + b);
+  return sum / this.grades.length;
+}
+
+Student.info = function() { // <-- This is a static method
+  console.log('These are students who have attended university');
+}
+```
