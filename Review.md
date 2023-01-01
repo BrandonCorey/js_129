@@ -227,3 +227,90 @@ let pc = {
  ```
  ### Explain the snippet above ###
  An `pc` variable is declared and initalized with an object containing four properties, one of which is a method. The properties contain info on the CPU, GPU, and motherboard of the pc. The info method prints this informatin, using a template literal to interpolate the names of the respective properties. This demonstrates encapsulation as all of the properties pertain to pc components, and the `info` method is simply prints a descrition of the components of the pc, which is relevant to the state of the object.
+ 
+## Polymorphism ##
+Refers to the idea of different object types responding differently to the same method invocation
+- Means the programmer doesn't have to care about what type the object calling the method is
+
+**Polymorphism through inhertiance**
+Refers to two concepts:
+- Sub types inheriting behavior from super types (normal psuedo-classical inhertiance)
+- Sub types overriding behavior from the suepr type with their own version of the method
+
+```javascript
+// Custom example
+class Firearm {
+  shoot() {
+    console.log('pew');
+  }
+}
+
+class Glock extends Firearm {}
+class AK extends Firearm {
+  shoot() {
+    console.log('pew pew pew');
+  }
+}
+
+let glock = new Glock();
+let ak = new AK();
+
+[glock, ak].forEach(gun => gun.shoot());
+// 'pew'
+// 'pew pew pew'
+```
+
+**Polymorphism through duck-typing**
+A type of polymorphism that allows objects of unrelated types to be categorized together by there use of similar behavior
+- Means they have methods that share the same name and act in a similar way in relative to the type of the object
+- Can sometimes mean that the unrelated types have similar properties overall
+```javascript
+class Programmer {
+  develop() {
+    this.programGame();
+  }
+  
+  programGame() {}
+}
+
+class Musician {
+  develop() {
+    this.createScore();
+  }
+  
+  createScore() {}
+}
+
+class Artist {
+  develop() {
+    this.designArt();
+  }
+  
+  designArt() {}
+}
+
+class VideoGame {
+  constructor() {
+    this.programmer = new Programmer();
+    this.musician = new Musician();
+    this.artist = new Artist();
+  }
+  
+  getDevs() {
+    return [
+      this.programmer,
+      this.musician,
+      this.artist,
+    ]
+  }
+  
+  develop() {
+    let devs = this.getDevs();
+    devs.forEach(dev => dev.develop());
+  }
+}
+```
+### Whats the difference between polymorphism through inheritance and duck typing ###
+Polymorphism through inheritance refers the concept that allows methods to be inherited from a super type, and overwritten if the sub type needs specific functionality for that method. This allows us to call methods on different sub types without worrying about implemenation details of the method.
+
+Polymorphism through duck typing is similar, however this refers to the invocation of methods of the same name on _unrelated_ types that may share relatively similar functionality that allows each type to be categorized together. Unlike through inheritance, duck typing lets us think of unrelated types as similar strictly through behavior, not through relation within a prototypal chain.
