@@ -403,9 +403,9 @@ let student = {
 }
 ```
 ## Constructors ##
-A function that returns an object with some key distinctins
-- Called with `new` keyword
-- Use `this` to define object properties
+A function that initalizes an object with a few distinctions from a factoryt
+- May be called with `new` keyword
+- Use of `this` to define object properties
 - Don't need explicit return value
   - If an explicit return value is used:
   - Primitve return values will be ignored, the `new` object will be returned anyway
