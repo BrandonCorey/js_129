@@ -791,7 +791,7 @@ Refers to ability of objects with different types to respond in different ways t
 
 ### Polymorphism through inheritance ###
 This covers two distinct but related behaviors
-- When subclasses extend the behavior of a method that is inherited from a super class
+- When subclasses inherit behvavior from a super class
 - When subclasses override the methods of the super class to provide unique behavior for their specific type
 
 Both of these behaviors allow us to call the same method of different objects without worrying about their types and implementation
