@@ -314,3 +314,148 @@ class VideoGame {
 Polymorphism through inheritance refers the concept that allows methods to be inherited from a super type, and overwritten if the sub type needs specific functionality for that method. This allows us to call methods on different sub types without worrying about implemenation details of the method.
 
 Polymorphism through duck typing is similar, however this refers to the invocation of methods of the same name on _unrelated_ types that may share relatively similar functionality that allows each type to be categorized together. Unlike through inheritance, duck typing lets us think of unrelated types as similar strictly through behavior, not through relation within a prototypal chain.
+
+## Collaborator objects ##
+These are objects that are referenced by an object property
+- These the values of the properties can be either an object literal or a reference to an object
+```javascript
+let cat = {
+  name: 'tiffany',
+  color: 'orange',
+  
+  qualities: ['fluffy', 'slow', 'nice'], // object literal collaborator
+}
+```
+### Describe the snippet above ###
+A `cat` variable is declared and initalized to an object literal with three instance properties. The properties `name` and `color` both have string values, and the `qualities` property is a collaborator, referencing an array that contains three string elements
+
+## Single vs multiple inheritance ##
+Single inheritance refers to the idea of an object or type only inheriting from a single type, rather than multiple. In JS, the only type of inhertiance is single
+
+Multiple inheritance refers to objects or sub types inheriting from multiple other types. This type of inheritance is found in more classical OO languages
+
+Because JS does not natively support multiple inheritance, design patterns like the _mix-in_ pattern were developed to allow objects to recieve state and behavior from objects that are not their prototype to allow for the modeling of an increase number of relationships
+
+## Mixins vs Inheritance ##
+Mixins refer to copying state and behavior from one object ao another, usually using the `Object.assign` method
+- This is done as a stand in for multiple inheritance as JS only supports single inheritance
+- Differs from inheritance as all state and behavior will be copied to the target object of the mix in, unlike with inhertiance where methods are typically stored in a prototype object and accessed through delegation
+
+```javascript
+const roaring = {
+  roar() {
+    console.log('GRRRRR');
+  }
+}
+
+const meowing = {
+  meow() {
+    console.log('meoww');
+  }
+}
+
+class Tiger {}
+class Puma {}
+class Leopard {}
+
+Object.assign(Tiger.prototype, roaring);
+Object.assign(Puma.prototype, meowing);
+Object.assign(Leopard.prototype, roaring, meowing);
+```
+### Describe the code above ###
+A roaring variable is declared and initalized to an object that contains one `roar` method that logs a roar. A `meow` variable is then initalized with an object containing a `emow` method that logs a leow. Both methods return `undefined`. Then, three classes are declared with nothing inside of their body. `Object.assign` is used to use the `roaring` object and `meowing` object as mixins for their relevant classes, which allows `Leopard` to recieve the behavior of both, something not possible through inheritance.
+
+## Methods and Functions ##
+
+### Method invocation ###
+Method invocation can be done using multiple different methods
+- object-method syntax
+- invoking a method through use of a variable
+- using `bind`, `apply`, or `call`
+
+The way you invoke a method determines its execution context
+
+### Functin invocation ###
+Function invocation can be done using the following methods
+- Regular parenthentical function call
+- Using `bind`, `apply`, or `call`
+
+The way you invoke a function also determines its execution context
+
+```javascript
+function print(string) {
+  console.log(string);
+}
+
+let obj = {}
+obj.print = function(string) { console.log(string); }
+
+print('hello'); // context is global
+obj.print('hi'); // context is obj
+```
+
+## Higher Order Functions ##
+A function that either accepts a function as an argument or returns a function
+- Higher order functions are possible in JS because functinos are first class citizens
+  - Means that a function can be used anywhere any other value can be used
+```javascript
+const squareNum = num => num ** 2;
+
+let square = [1, 2, 3].map(squareNum);
+console.log(square); // [1, 4, 9];
+```
+### What is the higher order function in the above code ###
+The higher order functino is `map`. This is because map takes a function argument `squareNum`.
+
+ ## The global object ##
+ This is an object that stores important information about the global environment that your code is being run
+ - In Node, this object is called `global`
+ - In the browser, this object is called `window`
+ - The global object acts as the execution context for regular function invocations
+ - Properties can be added to the global object by using assigning values to "variables" that have not been declared
+ ```javascript
+ prop = 5
+ global.prop; // 5
+ 
+ function globalFunc() {
+   this.prop = 3;
+ }
+ 
+ globalFunc();
+ global.prop; // 3
+ ```
+ ### How can you check if the context for the function execution is global object? ###
+ One way to check if the function invocation used the global object as the execution context is to evalute the expression `this === global`
+ 
+ ## Method and Property lookup sequence ##
+ The lookup sequence for properties starts begins with the object that provides the context for the invocation, if not found, the prototype chain is searched
+ - If the `null` is reached and the property has not been found, undefine is returned
+   - `null` is the prototype object the default prototype `Object.prototyp`
+ ```javascript
+ function Dog(name, breed, color) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+}
+
+Dog.prototype.bark = function () {
+  console.log('Woof!!');
+}
+
+let dog = new Dog('spot', 'German Shepherd', 'Black');
+Object.getPrototypeOf(dog) === Dog.prototype; // true
+Object.getPrototypeOf(Dog) === Object.prototype; // true
+Object.getPrototpyeOf(Object.prototype === null) // true
+
+dog.name;
+// dog (found name)
+// 'spot'
+
+dog.bark();
+// dog --> Dog.prototype (found bark)
+// 'Woof!!'
+
+dog.age;
+// dog --> Dog.prototype --> Object.prototype --> null (not found)
+// undefined
+ ```
