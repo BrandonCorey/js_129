@@ -257,7 +257,7 @@ let pc = {
  
 ## Polymorphism ##
 Refers to the idea of different object types responding differently to the same method invocation
-- Means the programmer doesn't have to care about what type the object calling the method is
+- It is polymorphism if the programemr doesnt have to care about what type the object is calling the method
 
 **Polymorphism through inhertiance**
 Refers to two concepts:
