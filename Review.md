@@ -63,6 +63,16 @@ An object oriented creation pattern that uses constructor functions and inhertia
   - Sets the context of the constructor function to the new object
   - Executes the constructor function
   - returns the new object
+
+**Benefits**
+- The main benefit here is creating a method once and storing it in a single object
+- This removes code redudancy and reduces the strain on memory of duplicating methods
+  - This is in direct contrast to how methods are shared using factory functions
+- The `new` keyword handles a number of processes automatically, such as creating a new object and setting its prototype 
+- Can check if an instance is of a particular type using:
+  - `constructor` property
+  - `instanceOf` keyword 
+
 ```javascript
 function Student(name, degree) {
   this.name = name;
@@ -80,6 +90,11 @@ An object oriented creation pattern that uses prototypal inheritance to create o
 - Uses prototypal inheritance which allows for method delegation of instance properties to their prototypes
   - Better for memory efficiency
 - Similar to other patterns, it can be used to bulk create objects of the same type
+
+**Key advantage over factory functions**
+- Similar to the psuedo-classical approach, methods are stored in a prototpye object
+- This means that methods are contained in a single placed and are not copied to every instantatiated object
+- This is more memory efficient than factory functions
 ```javascript
 const inventoryPrototype = {
   init() {
@@ -116,6 +131,18 @@ An object oriented creation pattern that uses psuedo-classical inheritance abstr
   - The `super` keyword can be used within the constructor to invoke the constructor of the super type
 - Instance methods can be defined directly inside of the class
 - Class syntax uses the `extends` keyword to create sub-types that inherit from the super
+
+**Differences from normal Constructors**
+- The function prototype is not enumerable for es6 classes
+- The `new` keyword must be used when calling constructor with classes
+- Class syntax has a `constructor` method that is automatically called when `new` is used
+- Methods can be defined directly inside of class
+- Static proeprties can be defined directly inside of class
+- `extends` keyword allows you to set function `prototype` of class to inherit from another class
+- `super` keyword allows you to call super type function on objects instantiated with sub-class
+- Class declaratins are not hoisted
+- Prototype property of a class cannot be reassigned
+
 ```javascript
 class Inventory {
   constructor() {}
@@ -548,3 +575,108 @@ sayName(); // My name is undefined
 
 ### Why is the context stripped in the above examples ###
 The context is stripped because in the example of passing a function as an argument, nesting it in another function, or storing the reference in a variable, all of the invocations end up being standalone function calls, which make the execution context `global`, which does not have a `name` property, so `undefined` is interpolated.
+
+## `call`, `apply` and `bind` ##
+These are three different `Function.prototype` methods that allow programmers to explicity supply an execution context to a function
+
+`call` and `apply` work very similarly. Both methods can be called on any function and accept a first argument for the context, and subsequent arguments to pass to the function that the method was called on. The only difference is that `apply` only accepts an array of arguments, where `call` accepts a normal comma seperated input.
+
+`bind` is slightly different, and instead accepts a context arguments and returns a new, parmanently bound function to the context supplied. This context cannot be reassigned in the future, even using the `bind`, `call`, and `apply`. `bind` does not affect the original function as it returns a new one.
+
+```javascript
+let vehicle = {
+  engineOn: false,
+  
+  start() {
+    this.engineOn = true;
+  },
+  
+  stop() {
+    this.engineOn = false;
+  }
+};
+
+let truck = {
+  year: 2009,
+  mpg: 15,
+  engineOn: false,
+};
+
+vehicle.start.call(truck);
+truck.engineOn; // true
+
+vehicle.stop.call(truck);
+truck.engineOn; // false
+
+let turnOnTruck = vehicle.start.bind(truck);
+turnOnTruck();
+truck.engineOn // true
+```
+
+## `Object.assgin` and `Object.create` ##
+
+`Object.assign` is a method that accepts a target object as the first argument, and as many subsequent objects after. The method then copies all state and behavior from the subsequent arguments to the target argument. This is useful when using the `mixin` creation pattern.
+
+`Object.create` is a method that takes a single arugment. It creates a new object, with the internal [[Prototype]] property of that object pointing to the object passed in as the argument to the function. An object without a prototype can be created by passing `null` to the function.
+```javascript
+let cat = {
+  greet() {
+    console.log('meoww');
+  }
+}
+
+let puma = {}
+Object.assign(puma, cat);
+let cheetah = Object.create(cat);
+
+puma.greet(); // 'meoww'
+cheetah.greet(); // 'meoww'
+```
+## Built in constructors ##
+### Date ###
+The `Date` constructor is used with the `new` keyword and cretes Date objects
+- When passed zero arguments, returns current date
+- Can pass the constructor a string that represents a date and the constructor will try to coerce it into a date 
+- All dates inherit from Date.prototype
+- Useful prototype methods like
+  - `Date.prototype.toString`
+  - `Date.prototype.getFullYear` --> returns full year as number i.e 2023
+  - `Date.prototype.getDay` --> returns day of week as number 0 - 6
+  - `Date.prototype.getMonth` --> returns month as Number 0 - 11
+  - `Date.prototype.getDate` --> returns day of month as number 0 - 31
+```javascript
+let birthday = new Date('11-01-1998');
+let dayOfWeek = birthday.getDay();
+let year = birthday.getFullYear();
+dayOfWeek; // 0
+year; // 1998
+```
+### String ###
+Creates String objects
+- These are different from string primitives
+- String primitives are wrapped in String objects temporarily when a String.prototype method is called
+- The String.prototype method returns a new modified string based on the method used
+- String used without `new` will coerce a non string type to a string primitive
+```javascript
+let str = new String('hello'); // These are string objects
+let str1 = new String('hello');
+typeof str1; // object
+str === str1 // false
+let num = 5;
+let strNum = String(num); // '5'
+typeof strNum // string
+```
+
+### Boolean and Number ###
+Similar to String, when called with `new`, they create `Number` and `Boolean` objects
+- Without `new`, they coerce their argument to either a Number or a boolean
+- They have primitive and object forms, with JS wrapping the primitives in objects temporarily to access methdods and properties of the constructors and their prototype objects
+```javascript
+let five = new Number(5);
+five === 5; // false (five is an object, 5 is a primitive)
+Number('5'); // 5 (coerces string to number)
+
+let falseObj = new Boolean(false); // new booleam obkect
+falseObj === false; // false, falseObj is a boolean object, false is a primitive
+Boolean(0) === false; // true, 0 is coerced to false primitive
+```
