@@ -459,3 +459,49 @@ dog.age;
 // dog --> Dog.prototype --> Object.prototype --> null (not found)
 // undefined
  ```
+## Function execution context and `this` ##
+Execution context is the enviroment in which a function executes its code
+- The context will always be an object
+- Can be implicit or explicit
+- Depends on how the function is invoked, not how it is defined
+- The `this` keyword points to the execution context of a function
+
+### Implicit context and explicit context ###
+Implicit execution context is determined by the JS interpreter based based on the way a function is invoked
+- `new` keyword, method-object/method execution context, regular function call syntax
+
+Explicit execution context is specified by the programmer using the follower methods
+- `bind`
+- `call`
+- `apply`
+```javascript
+// implicit context
+let obj = {
+  print(string) {
+    console.log(string);
+  }
+}
+
+function Obj() {}
+Obj.prototype.print = function(string) { console.log(string); }
+
+let print = obj.print;
+let newObj = new Obj(); // implicit Obj
+
+obj.print(); // implicit context (obj)
+print(); // implicit context (global)
+```
+```javascript
+// explicit context
+let obj = {
+  print() {
+    console.log(this.name);
+  }
+}
+
+let newObj = {
+  name: 'Brandon',
+}
+
+obj.print.call(newObj); // explicit context (newObj)
+```
