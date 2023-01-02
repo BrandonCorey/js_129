@@ -505,3 +505,46 @@ let newObj = {
 
 obj.print.call(newObj); // explicit context (newObj)
 ```
+### Whats the difference between implicit and explicit context ###
+Implcitit context is determined by the JS interpreter based on the way a function is invoked, and explicit content is determined by the progammer using either `apply`, `bind`, or `call`
+
+## Dealing with Context Loss ##
+Context loss is when the context of an invocation is not what you expect, typically when it has becomes the `global` object. Context can be lossed a few different ways
+- Passing a function as an argument can strip it of its context
+  - This typically results in the function being called as a standalone function within the body of the function it was passed
+- Calling a method as a standalone function can strip it of its context
+  - Includes setting storing a reference to a method in a variable and calling it as a standalone function with that variable
+- Nesting functions inside of each other can strip the inner function of its context
+  - This typically results in the function being called as a standlone function
+
+```javascript
+let programmer = {
+  name: 'Brandon Corey',
+  
+  sayName() {
+    function print() {
+      console.log(`My name is ${this.name}`); // Nesting
+    }
+    print();
+  },
+  
+  sayAnother() {
+    console.log(`My name is ${this.name}`);
+  }
+}
+
+function repeat(func) { // passing as argument
+  func();
+  func();
+}
+
+let sayName = programmer.sayAnother; // storing in variable
+
+programmer.sayName(); // My name is undefined
+repeat(programmer.sayAnother); // My name is undefined
+                               // My name is undefined
+sayName(); // My name is undefined
+```
+
+### Why is the context stripped in the above examples ###
+The context is stripped because in the example of passing a function as an argument, nesting it in another function, or storing the reference in a variable, all of the invocations end up being standalone function calls, which make the execution context `global`, which does not have a `name` property, so `undefined` is interpolated.
