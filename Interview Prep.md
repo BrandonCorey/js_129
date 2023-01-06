@@ -63,11 +63,34 @@ function Order(name, price, quantity) {
 Order.prototype = Object.create(Product.prototype);
 Order.prototype.constructor = Order;
 
-Order.prototype.getCost = function() {
+Order.prototype.cost = function() {
   return this.quantity * this. price;
 }
 
 let order = new Order('RTX 3080', 800, 4);
+console.log(order.cost()); // 3200
+```
 
-console.log(order.getCost()); // 3200
+## ES6 Classes ##
+```javascript
+class Product {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+}
+
+class Order extends Product {
+  constructor(name, price, quantity) {
+    super(name, price);
+    this.quantity = quantity;
+  }
+
+  cost() {
+    return this.quantity * this.price;
+  }
+}
+
+let order = new Order('RTX 3080', 800, 4);
+console.log(order.cost()); // 3200
 ```
