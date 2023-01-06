@@ -24,3 +24,26 @@ function createPhone(brand, model, color) {
 
 let phone = createPhone('Apple', 'iPhone 10', 'white');
 ```
+
+## OLOO ##
+```javascript
+const inventoryPrototype = {
+  init() {
+    return this;
+  },
+
+  addItem(product, quantity) {
+    this[product] = (this[product] || 0) + quantity;
+  },
+
+  removeItem(product, quantity) {
+    this.addItem(product, -quantity);
+  }
+}
+
+
+let inventory = Object.create(inventoryPrototype).init();
+
+inventory.addItem('RTX 3080', 15);
+inventory.removeItem('RTX 3080', 10);
+```
