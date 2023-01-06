@@ -182,3 +182,28 @@ let game = new Game();
 
 game.develop();
 ```
+```javascript
+class Gun {
+  constructor() {}
+
+  shoot() {
+    console.log('pew');
+  }
+}
+
+class Revolver extends Gun {}
+
+class MachineGun extends Gun {
+  shoot() {
+    console.log('pew, pew, pew');
+  }
+}
+
+let gun = new Gun();
+let revolver = new Revolver(); // polymorphism through inheritance
+let machineGun = new MachineGun(); // polymorphism through inheritance
+
+
+let guns = [gun, revolver, machineGun];
+guns.forEach(gun => gun.shoot());
+```
