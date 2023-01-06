@@ -169,7 +169,7 @@ class Game {
 let game = new Game();
 game.develop();
 ```
-### Polymorphism through duck typing ###
+### Inheritance ###
 ```javascript
 class Gun {
   constructor() {}
