@@ -47,3 +47,27 @@ let inventory = Object.create(inventoryPrototype).init();
 inventory.addItem('RTX 3080', 15);
 inventory.removeItem('RTX 3080', 10);
 ```
+
+## Constructor Prototype ##
+```javascript
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Order(name, price, quantity) {
+  Product.call(this, name, price);
+  this.quantity = quantity;
+}
+
+Order.prototype = Object.create(Product.prototype);
+Order.prototype.constructor = Order;
+
+Order.prototype.getCost = function() {
+  return this.quantity * this. price;
+}
+
+let order = new Order('RTX 3080', 800, 4);
+
+console.log(order.getCost()); // 3200
+```
