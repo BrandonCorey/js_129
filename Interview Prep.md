@@ -94,3 +94,31 @@ class Order extends Product {
 let order = new Order('RTX 3080', 800, 4);
 console.log(order.cost()); // 3200
 ```
+
+## Mixin ##
+```javascript
+let meowable = {
+  meow() {
+    console.log('meoww');
+  }
+}
+
+let roarable = {
+  roar() {
+    console.log('ROAR!');
+  }
+}
+
+class Tiger {}
+class Puma {}
+class Leopard {}
+
+Object.assign(Tiger.prototype, roarable);
+Object.assign(Puma.prototype, meowable);
+Object.assign(Leopard.prototype, meowable, roarable);
+
+let leopard = new Leopard();
+
+leopard.roar(); // 'ROAR!'
+leopard.meow(); // 'meoww'
+```
