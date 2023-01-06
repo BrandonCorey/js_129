@@ -19,7 +19,7 @@ function createPhone(brand, model, color) {
     silence() {
       this.vibrate = !this.vibrate;
     }
-  }
+  };
 }
 
 let phone = createPhone('Apple', 'iPhone 10', 'white');
@@ -39,7 +39,7 @@ const inventoryPrototype = {
   removeItem(product, quantity) {
     this.addItem(product, -quantity);
   }
-}
+};
 
 
 let inventory = Object.create(inventoryPrototype).init();
