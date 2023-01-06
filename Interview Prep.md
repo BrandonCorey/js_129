@@ -131,10 +131,6 @@ class Programmer {
   constructor() {}
 
   develop() {
-    this.programGame();
-  }
-
-  programGame() {
     console.log('Programming...');
   }
 }
@@ -143,10 +139,6 @@ class Artist {
   constructor() {}
 
   develop() {
-    this.createArt();
-  }
-
-  createArt() {
     console.log('Creating art...');
   }
 }
@@ -155,10 +147,6 @@ class Musician {
   constructor() {}
 
   develop() {
-    this.createMusic();
-  }
-
-  createMusic() {
     console.log('Creating music...');
   }
 }
@@ -179,9 +167,9 @@ class Game {
 }
 
 let game = new Game();
-
 game.develop();
 ```
+### Polymorphism through duck typing ###
 ```javascript
 class Gun {
   constructor() {}
