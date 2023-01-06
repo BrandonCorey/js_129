@@ -122,3 +122,63 @@ let leopard = new Leopard();
 leopard.roar(); // 'ROAR!'
 leopard.meow(); // 'meoww'
 ```
+
+## Polymorphism ##
+
+### Duck Typing ###
+```javascript
+class Programmer {
+  constructor() {}
+
+  develop() {
+    this.programGame();
+  }
+
+  programGame() {
+    console.log('Programming...');
+  }
+}
+
+class Artist {
+  constructor() {}
+
+  develop() {
+    this.createArt();
+  }
+
+  createArt() {
+    console.log('Creating art...');
+  }
+}
+
+class Musician {
+  constructor() {}
+
+  develop() {
+    this.createMusic();
+  }
+
+  createMusic() {
+    console.log('Creating music...');
+  }
+}
+
+
+class Game {
+  constructor() {
+    this.programmer = new Programmer();
+    this.Artist = new Artist();
+    this.Musician = new Musician();
+  }
+
+  develop() {
+    const devs = [this.programmer, this.Artist, this.Musician];
+
+    devs.forEach(dev => dev.develop());
+  }
+}
+
+let game = new Game();
+
+game.develop();
+```
