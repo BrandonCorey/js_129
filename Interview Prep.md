@@ -175,6 +175,9 @@ In the above example, without mixins, we would probably creating a roaring cat c
 
 ## Polymorphism ##
 
+### Pros ###
+Allows us to call methods on objects of different types without worrying about the type of the object
+
 ### Duck Typing ###
 ```javascript
 class Programmer {
@@ -219,6 +222,12 @@ class Game {
 let game = new Game();
 game.develop();
 ```
+
+### Benefits ###
+Allows us to categorize unrelated types together based on similar behavior relative to their types
+- The unrelated types will typically have similar properties
+  - An example of this is in JS using array methods on string
+
 ### Inheritance ###
 ```javascript
 class Gun {
@@ -245,3 +254,8 @@ let machineGun = new MachineGun(); // polymorphism through inheritance
 let guns = [gun, revolver, machineGun];
 guns.forEach(gun => gun.shoot());
 ```
+
+### Benefits ###
+This covers two behaviors
+- Sub types inheriting methods from super types
+- Sub types overriding methods from super types with their own (of the same name)
