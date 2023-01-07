@@ -58,8 +58,13 @@ truckPrototype.tow = function() {
 let truck = Object.create(truckPrototype).init('Lincoln', 'Town Car');
 ```
 ### Pros ###
+- Can create multiple objects of a certain type very quickly
+- Reduces code duplication
 - More memory efficient than factory functions as methods are stored inside of a prototype object
 - Syntax embraces prototypal inhertiance instead of trying to hide it with constructors and classes
+
+### Cons ###
+- Similar to factory function, cannot determine the type of an object created using OLOO
 
 ## Constructor Prototype ##
 ```javascript
@@ -84,6 +89,16 @@ let order = new Order('RTX 3080', 800, 4);
 console.log(order.cost()); // 3200
 ```
 
+## Pros ##
+- Can create multiple objects of a certain type very quickly
+- Reduces code duplication
+- Able to store methods inside of JS functions built in prototype object
+- Able to use `instanceOf` or the prototype object to determine instance's type
+- Syntax similar to other OO languages
+
+## Cons ##
+- Syntax is a bit more verbose than other creation patterns
+
 ## ES6 Classes ##
 ```javascript
 class Product {
@@ -107,6 +122,17 @@ class Order extends Product {
 let order = new Order('RTX 3080', 800, 4);
 console.log(order.cost()); // 3200
 ```
+### Pros ###
+- Can create multiple objects of a certain type very quickly
+- Reduces code duplication
+- Able to store methods inside of JS functions built in prototype object
+- Able to use `instanceOf` or the prototype object to determine instance's type
+- Syntax similar to other OO languages
+  - Can extend types very easily with `extend` keyword
+
+### Cons ###
+- Must use `new` keyword with class syntax
+- Prototype object of class is not enumerable by default
 
 ## Mixin ##
 ```javascript
@@ -135,6 +161,17 @@ let leopard = new Leopard();
 leopard.roar(); // 'ROAR!'
 leopard.meow(); // 'meoww'
 ```
+
+### Benefits ###
+- Allows for modeling for a greater number of relationships
+- Acts as a solution for the single inheritance issue of JS
+
+In the above example, without mixins, we would probably creating a roaring cat class anda  meowing cat class. The problem
+- Tiger could be a sub type of roaring class
+- Puma could be a sub type of meowing class
+- Leopard could be a sub type of either but NOT both
+  - This is a problem because it needs both behaviors
+  - This is why we use mixins
 
 ## Polymorphism ##
 
