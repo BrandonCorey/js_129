@@ -25,28 +25,41 @@ function createPhone(brand, model, color) {
 let phone = createPhone('Apple', 'iPhone 10', 'white');
 ```
 
+### Pros ###
+- Can create multiple objects of a certain type very quickly
+- Reduces code duplication
+- Allows for more dynamic objects as values can be passed to properties through function arguments
+
+### Cons ###
+- Memory inefficient, copies all methods to all objects
+- Impossible to determine the type of an object created using a constructor
+
 ## OLOO ##
 ```javascript
-const inventoryPrototype = {
-  init() {
+const carPrototype = {
+  init(brand, model) {
+    this.brand = brand;
+    this.model = model;
+    this.engineOn = false;
     return this;
   },
 
-  addItem(product, quantity) {
-    this[product] = (this[product] || 0) + quantity;
-  },
-
-  removeItem(product, quantity) {
-    this.addItem(product, -quantity);
+  start() {
+    this.engineOn = true;
   }
-};
+}
 
+const truckPrototype = Object.create(carPrototype);
 
-let inventory = Object.create(inventoryPrototype).init();
+truckPrototype.tow = function() {
+  console.log('towing...');
+}
 
-inventory.addItem('RTX 3080', 15);
-inventory.removeItem('RTX 3080', 10);
+let truck = Object.create(truckPrototype).init('Lincoln', 'Town Car');
 ```
+### Pros ###
+- More memory efficient than factory functions as methods are stored inside of a prototype object
+- Syntax embraces prototypal inhertiance instead of trying to hide it with constructors and classes
 
 ## Constructor Prototype ##
 ```javascript
