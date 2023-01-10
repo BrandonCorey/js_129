@@ -73,20 +73,20 @@ function Product(name, price) {
   this.price = price;
 }
 
-function Order(name, price, quantity) {
+Product.prototype.info = function() {
+  console.log(`This ${this.name} coffee is ${this.price} dollars.`);
+}
+
+function Coffee(name, price, roast) {
   Product.call(this, name, price);
-  this.quantity = quantity;
+  this.roast = 'dark';
 }
 
-Order.prototype = Object.create(Product.prototype);
-Order.prototype.constructor = Order;
+Coffee.prototype = Object.create(Product.prototype);
+Coffee.prototype.constructor = Coffee;
 
-Order.prototype.cost = function() {
-  return this.quantity * this. price;
-}
-
-let order = new Order('RTX 3080', 800, 4);
-console.log(order.cost()); // 3200
+let coffee = new Coffee('Dunkin', 3, 'dark');
+coffee.info();
 ```
 
 ## Pros ##
@@ -106,21 +106,27 @@ class Product {
     this.name = name;
     this.price = price;
   }
+
+  info() {
+    console.log(`This ${this.name} coffee is ${this.price} dollars.`);
+  }
 }
 
-class Order extends Product {
-  constructor(name, price, quantity) {
+class Coffee extends Product {
+  constructor(name, price, roast) {
     super(name, price);
-    this.quantity = quantity;
+    this.roast = roast;
   }
 
-  cost() {
-    return this.quantity * this.price;
+  drink() {
+    console.log('drinking');
   }
 }
 
-let order = new Order('RTX 3080', 800, 4);
-console.log(order.cost()); // 3200
+let coffee = new Coffee('Dunkin', 3, 'dark');
+
+coffee.info();
+coffee.drink();
 ```
 ### Pros ###
 - Can create multiple objects of a certain type very quickly
